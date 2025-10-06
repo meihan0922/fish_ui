@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
 
-import { Button } from './Button';
-
+import { Button } from 'fish-ui';
+import CustomSource from './custom.stories?raw';
+import { Custom } from './custom.stories';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: 'Example/Button',
@@ -59,3 +60,14 @@ export const Fish: Story = {
     label: "Button"
   }
 };
+
+export const CustomButton = {
+  render: () => <Custom />,
+  parameters: {
+    docs: {
+      source: {
+        code: CustomSource
+      }
+    }
+  }
+}
