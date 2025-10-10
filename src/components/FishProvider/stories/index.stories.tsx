@@ -1,7 +1,9 @@
 import type { Meta } from '@storybook/react-vite';
 import { FishProvider } from 'fish-ui';
 import CustomSource from './custom.stories?raw';
+import NestedSource from './nested.stories?raw';
 import { Custom } from './custom.stories';
+import { Nested } from './nested.stories';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -21,6 +23,16 @@ export const CustomFishProvider = {
         docs: {
             source: {
                 code: CustomSource,
+            },
+        },
+    },
+};
+export const NestedFishProvider = {
+    render: () => <Nested />,
+    parameters: {
+        docs: {
+            source: {
+                code: NestedSource,
             },
         },
     },
