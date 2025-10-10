@@ -1,25 +1,29 @@
-import React, { createContext, } from "react";
-import type { Theme } from "@fluentui/react-theme";
-import { useStyles } from "./useStyles";
+import React, { createContext } from 'react';
+import { webLightTheme, type Theme } from '@fluentui/react-theme';
+import { useStyles } from './useStyles';
 
-export type FishProviderProps = React.HtmlHTMLAttributes<React.PropsWithChildren<ThemeContextValue>> & {
+export type FishProviderProps = React.HtmlHTMLAttributes<
+    React.PropsWithChildren<ThemeContextValue>
+> & {
     theme?: Theme | Partial<Theme>;
-}
+};
 
 type ThemeContextValue = Theme | Partial<Theme> | undefined;
 
 const FishContext = createContext<ThemeContextValue>(undefined);
 
-
-export const FishProvider = ({ className, theme, children, ...restProps }: FishProviderProps) => {
+export const FishProvider = ({
+    className,
+    theme = webLightTheme,
+    children,
+    ...restProps
+}: FishProviderProps) => {
     const styles = useStyles({ className, theme });
 
     return (
         <FishContext.Provider value={theme} {...restProps}>
             {/* 把 class variable 掛載 root 上 */}
-            <div className={styles}>
-                {children}
-            </div>
+            <div className={styles}>{children}</div>
         </FishContext.Provider>
     );
 };

@@ -12,45 +12,48 @@ const __dirname = path.dirname(__filename);
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "fish-ui": path.resolve(__dirname, 'src/index.ts'),
-    }
-  },
-  test: {
-    projects: [
-      // Storybook tests
-      {
-        extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-          storybookTest({
-            configDir: path.join(__dirname, '.storybook')
-          })],
-        test: {
-          name: 'storybook',
-          browser: {
-            enabled: true,
-            headless: true,
-            provider: 'playwright',
-            instances: [{
-              browser: 'chromium'
-            }]
-          },
-          setupFiles: ['.storybook/vitest.setup.ts']
-        }
-      },
-      // Unit tests
-      {
-        extends: true,
-        test: {
-          name: 'unit',
-          include: ['**/*.test.{js,ts,jsx,tsx}'],
-          environment: 'jsdom',
-        }
-      }
-    ]
-  }
+    plugins: [react()],
+    resolve: {
+        alias: {
+            'fish-ui': path.resolve(__dirname, 'src/index.ts'),
+        },
+    },
+    test: {
+        projects: [
+            // Storybook tests
+            {
+                extends: true,
+                plugins: [
+                    // The plugin will run tests for the stories defined in your Storybook config
+                    // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+                    storybookTest({
+                        configDir: path.join(__dirname, '.storybook'),
+                    }),
+                ],
+                test: {
+                    name: 'storybook',
+                    browser: {
+                        enabled: true,
+                        headless: true,
+                        provider: 'playwright',
+                        instances: [
+                            {
+                                browser: 'chromium',
+                            },
+                        ],
+                    },
+                    setupFiles: ['.storybook/vitest.setup.ts'],
+                },
+            },
+            // Unit tests
+            {
+                extends: true,
+                test: {
+                    name: 'unit',
+                    include: ['**/*.test.{js,ts,jsx,tsx}'],
+                    environment: 'jsdom',
+                },
+            },
+        ],
+    },
 });
