@@ -12,6 +12,7 @@
         "preview": "vite preview",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
+        "build-storybook:docs": "storybook build --docs",
         "sb": "pnpm run storybook",
         "sb:docs": "pnpm run storybook --docs",
         "test": "vitest",
